@@ -337,11 +337,12 @@ class WriteVTT(SubtitlesWriter):
     decimal_marker: str = "."
 
     def write_result(self, result: dict, file: TextIO, options: dict):
-        print("WEBVTT\n", file=file)
-        print("<style>\n", file=file)
+        print("WEBVTT++\n", file=file)
+      
         
         for start, end, text in self.iterate_result(result, options):
             print(f"{start} --> {end}\n{text}\n", file=file, flush=True)
+            
 
 
 class WriteSRT(SubtitlesWriter):
