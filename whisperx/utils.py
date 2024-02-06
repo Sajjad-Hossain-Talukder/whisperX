@@ -305,7 +305,7 @@ class SubtitlesWriter(ResultWriter):
 
                             yield start, end, prefix + " ".join(
                                 [
-                                    re.sub(r"^(\s*)(.*)$", r"\1<u>\2</u>", word)
+                                    re.sub(r"^(\s*)(.*)$", r"\1<b>\2</b>", word)
                                     if j == i
                                     else word
                                     for j, word in enumerate(all_words)
