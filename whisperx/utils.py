@@ -305,7 +305,7 @@ class SubtitlesWriter(ResultWriter):
 
                             yield start, end, prefix + " ".join(
                                 [
-                                    re.sub(r"^(\s*)(.*)$", r"\1<x>\2</x>", word)
+                                    re.sub(r"^(\s*)(.*)$", r"\1<u>\2</u>", word)
                                     if j == i
                                     else word
                                     for j, word in enumerate(all_words)
@@ -338,8 +338,6 @@ class WriteVTT(SubtitlesWriter):
 
     def write_result(self, result: dict, file: TextIO, options: dict):
         print("WEBVTT\n", file=file)
-      
-        
         for start, end, text in self.iterate_result(result, options):
             print(f"{start} --> {end}\n{text}\n", file=file, flush=True)
             
@@ -410,11 +408,7 @@ def get_writer(
     output_format: str, output_dir: str
 ) -> Callable[[dict, TextIO, dict], None]:
     writers = {
-        "txt": WriteTXT,
         "vtt": WriteVTT,
-        "srt": WriteSRT,
-        "tsv": WriteTSV,
-        "json": WriteJSON,
     }
     optional_writers = {
         "aud": WriteAudacity,
