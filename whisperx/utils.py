@@ -337,7 +337,8 @@ class WriteVTT(SubtitlesWriter):
     decimal_marker: str = "."
 
     def write_result(self, result: dict, file: TextIO, options: dict):
-        print("WEBVTT\n", file=file)
+        print("WEBVTT\n<style>\n .highlighted-word { \n display: inline-block;\n padding: 4px 8px; \n background-color: #ffffff;  border-radius: 10px; }\n </style> \n", file=file)
+        
         for start, end, text in self.iterate_result(result, options):
             print(f"{start} --> {end}\n{text}\n", file=file, flush=True)
 
