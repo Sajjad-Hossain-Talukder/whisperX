@@ -305,7 +305,7 @@ class SubtitlesWriter(ResultWriter):
 
                             yield start, end, prefix + " ".join(
                                 [
-                                    re.sub(r"^(\s*)(.*)$", r'\1<span class="highlighted-word">\2</span>', word)
+                                    re.sub(r"^(\s*)(.*)$", r'\1<span style="background-color: black; color: blue; border-radius: 5px; padding: 2px;">\2</span>', word)
                                     if j == i
                                     else word
                                     for j, word in enumerate(all_words)
@@ -337,7 +337,7 @@ class WriteVTT(SubtitlesWriter):
     decimal_marker: str = "."
 
     def write_result(self, result: dict, file: TextIO, options: dict):
-        print("WEBVTT\n<style>\n .highlighted-word {\n display: inline-block;\n padding: 4px 8px;\n background-color: #ffffff;\n border-radius: 10px;\n}\n</style>\n", file=file)
+        print("WEBVTT\n", file=file)
           
         for start, end, text in self.iterate_result(result, options):
             print(f"{start} --> {end}\n{text}\n", file=file, flush=True)
